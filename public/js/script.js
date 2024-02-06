@@ -6,7 +6,7 @@ import {
     joinGameButton, elementInfoGameEnable, elementInfoGameDisable
 } from "./board.js";
 import { changeTurn } from "./players.js";
-import { checkAll, placeMark } from "./rules.js";
+import { checkAll} from "./rules.js";
 import { winningMessage, restartButton, limparButton } from "./page.js";
 
 //Váriaveis Globais
