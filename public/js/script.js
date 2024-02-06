@@ -41,8 +41,6 @@ let numberMove = 0;
 let classToAdd;
 let boardUnlock;
 
-//Funções
-
 function joinGame() {
     const name = document.getElementById('playerName').value;
     if (name) {
