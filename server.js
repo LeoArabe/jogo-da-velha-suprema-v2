@@ -1,4 +1,4 @@
-import express from 'express';
+const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
 const path = require('path'); // Adicione esta linha
@@ -60,6 +60,6 @@ function updateRoomPlayers(roomId) {
     io.to(roomId).emit('updatePlayers', room.players);
 }
 
-server.listen(5500, function(){
-    console.log('Listening on port 21019');
+server.listen(21128, function(){
+    console.log('Listening on port 21128');
 });
