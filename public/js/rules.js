@@ -91,10 +91,6 @@ if(draw){
 }
 };
 
-  export const placeMark = (cell, classToAdd,) => {
-cell.classList.add(classToAdd);
-};
-
   export function test0 (isWin ,draw , board) {
    
   if (isWin) {
