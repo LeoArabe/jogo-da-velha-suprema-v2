@@ -71,6 +71,7 @@ function removeCellAll(cell1, index,) {
 };
 
 const startGame = () => {
+    circleTurn;
     click();
     removeCellAll(81, 0);
     winningMessage.classList.remove("show-winning-message");
