@@ -1,4 +1,3 @@
-import { turn } from "./script.js";
 export const trocaVez = (vez) => {
   return !vez;
 };
@@ -7,11 +6,11 @@ export const suaVez = () => {
   return true;
 };
 
-export const changeTurn = () => {
+export const changeTurn = (turn) => {
   turn = !turn;
 }
 
-export const swapTurns = (circleTurn) => {
+export const swapTurns = () => {
   circleTurn = !circleTurn;
   return;
 };

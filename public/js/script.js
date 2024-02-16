@@ -129,7 +129,7 @@ socket.on('gameUpdate', (gameState) => {
     if (boardElements[cella].classList[2] == "wx" || boardElements[cella].classList[2] == "wo") {
         setBoardUnlocked(9);
     }
-    changeTurn();
+    turn = changeTurn(turn);
     //altera texto para avisar de quem é o turno
     if (turn) {
         elementInfoGameEnable();
