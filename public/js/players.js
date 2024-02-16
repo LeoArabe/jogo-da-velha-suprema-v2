@@ -8,8 +8,10 @@ export const suaVez = () => {
 
 export const changeTurn = (turn) => {
   turn = !turn;
+  return turn;
 }
 
 export const swapTurns = (circleTurn) => {
   circleTurn = !circleTurn;
+  return circleTurn;
 };

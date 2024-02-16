@@ -129,6 +129,7 @@ socket.on('gameUpdate', (gameState) => {
     if (boardElements[cella].classList[2] == "wx" || boardElements[cella].classList[2] == "wo") {
         setBoardUnlocked(9);
     }
+    console.log(turn)
     turn = changeTurn(turn);
     console.log(turn)
     console.log(circleTurn)
