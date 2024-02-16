@@ -143,6 +143,6 @@ if(draw){
   } else if (draw) {
     endGame(true, false);
   } else {
-    swapTurns();
+    circleTurn = swapTurns(circleTurn);
   }
 };

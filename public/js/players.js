@@ -10,7 +10,6 @@ export const changeTurn = (turn) => {
   turn = !turn;
 }
 
-export const swapTurns = () => {
+export const swapTurns = (circleTurn) => {
   circleTurn = !circleTurn;
-  return;
 };
