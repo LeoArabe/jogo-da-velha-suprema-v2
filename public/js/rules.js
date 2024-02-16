@@ -1,8 +1,8 @@
 import { boardElements, marcaBoardW, marcaBoardD, cellElements } from "./board.js";
 import { swapTurns } from "./players.js";
-import { circleTurn } from "./script.js";
 import { winningMessage, winningMessageTextElement } from "./page.js";
 
+export let circleTurn = false;
 let hw;
 
   export const celle0 = [[0,1,2,3,4,5,6,7,8]

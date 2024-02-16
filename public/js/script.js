@@ -6,7 +6,7 @@ import {
     joinGameButton, elementInfoGameEnable, elementInfoGameDisable
 } from "./board.js";
 import { changeTurn } from "./players.js";
-import { checkAll} from "./rules.js";
+import { checkAll, circleTurn} from "./rules.js";
 import { winningMessage, restartButton, limparButton } from "./page.js";
 
 //Váriaveis Globais
@@ -32,7 +32,6 @@ const tipsToPlay = [
 const celle0 = [[0, 1, 2, 3, 4, 5, 6, 7, 8]
 ];
 
-export let circleTurn;
 let currentPlayerName;
 let currentRoomId;
 export let currentPlayerSymbol;
@@ -72,7 +71,6 @@ function removeCellAll(cell1, index,) {
 };
 
 const startGame = () => {
-    circleTurn = false;
     click();
     removeCellAll(81, 0);
     winningMessage.classList.remove("show-winning-message");
