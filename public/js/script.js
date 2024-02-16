@@ -115,6 +115,7 @@ socket.on('updatePlayers', (players) => {
 });
 
 socket.on('gameUpdate', (gameState) => {
+
     //define coordenadas para marcar posição 
     let cella = gameState.moves[numberMove].position.cella;
     let cellb = gameState.moves[numberMove].position.cellb;
@@ -129,6 +130,8 @@ socket.on('gameUpdate', (gameState) => {
         setBoardUnlocked(9);
     }
     turn = changeTurn(turn);
+    console.log(turn)
+    console.log(circleTurn)
     //altera texto para avisar de quem é o turno
     if (turn) {
         elementInfoGameEnable();
