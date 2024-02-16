@@ -33,7 +33,7 @@ const celle0 = [[0, 1, 2, 3, 4, 5, 6, 7, 8]
 ];
 
 export let currentPlayerSymbol;
-export let circleTurn;
+export let circleTurn = false;
 let currentPlayerName;
 let currentRoomId;
 let turn;
@@ -72,7 +72,6 @@ function removeCellAll(cell1, index,) {
 };
 
 const startGame = () => {
-    circleTurn = false;
     click();
     removeCellAll(81, 0);
     winningMessage.classList.remove("show-winning-message");
