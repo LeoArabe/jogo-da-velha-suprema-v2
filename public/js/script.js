@@ -33,7 +33,7 @@ const celle0 = [[0, 1, 2, 3, 4, 5, 6, 7, 8]
 ];
 
 export let currentPlayerSymbol;
-export let circleTurn = false;
+let circleTurn = false;
 let currentPlayerName;
 let currentRoomId;
 let turn;
@@ -128,7 +128,7 @@ socket.on('gameUpdate', (gameState) => {
     if (boardElements[cella].classList[2] == "wx" || boardElements[cella].classList[2] == "wo") {
         setBoardUnlocked(9);
     }
-    changeTurn();
+    circleTurn = changeTurn(circleTurn);
     //altera texto para avisar de quem é o turno
     if (turn) {
         elementInfoGameEnable();
