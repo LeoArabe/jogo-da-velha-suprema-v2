@@ -1,4 +1,5 @@
 import { circleTurn } from "./script.js";
+
     export const trocaVez = (vez) => {
         return !vez;
   };
@@ -10,7 +11,7 @@ import { circleTurn } from "./script.js";
   export const changeTurn = () => {
     turn = !turn;
 }
-  
+console.log(circleTurn)
 export const swapTurns = () => {
   circleTurn = !circleTurn;
 };
