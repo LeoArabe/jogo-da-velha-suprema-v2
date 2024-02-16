@@ -1,3 +1,4 @@
+import { currentPlayerSymbol } from "./script";
 export const boardElements = document.querySelectorAll("[data-board]");
 export const elementInfoPlayer = document.getElementById("info-player");
 export const elementInfoGame = document.getElementById("info-game");
