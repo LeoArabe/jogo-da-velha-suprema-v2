@@ -11,7 +11,8 @@ import { circleTurn } from "./script.js";
   export const changeTurn = () => {
     turn = !turn;
 }
-console.log(circleTurn)
+
 export const swapTurns = () => {
+  console.log(circleTurn)
   circleTurn = !circleTurn;
 };
