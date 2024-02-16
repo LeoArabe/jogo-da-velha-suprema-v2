@@ -32,11 +32,11 @@ const tipsToPlay = [
 const celle0 = [[0, 1, 2, 3, 4, 5, 6, 7, 8]
 ];
 
-export let currentPlayerSymbol;
-export let circleTurn = false;
+export let circleTurn;
 let currentPlayerName;
 let currentRoomId;
-let turn;
+let currentPlayerSymbol;
+export let turn;
 let numberMove = 0;
 let classToAdd;
 let boardUnlock;
@@ -72,6 +72,7 @@ function removeCellAll(cell1, index,) {
 };
 
 const startGame = () => {
+    circleTurn = false;
     click();
     removeCellAll(81, 0);
     winningMessage.classList.remove("show-winning-message");
@@ -128,7 +129,7 @@ socket.on('gameUpdate', (gameState) => {
     if (boardElements[cella].classList[2] == "wx" || boardElements[cella].classList[2] == "wo") {
         setBoardUnlocked(9);
     }
-    circleTurn = changeTurn(circleTurn);
+    changeTurn();
     //altera texto para avisar de quem é o turno
     if (turn) {
         elementInfoGameEnable();

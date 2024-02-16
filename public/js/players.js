@@ -1,3 +1,4 @@
+import { turn } from "./script.js";
 export const trocaVez = (vez) => {
   return !vez;
 };
