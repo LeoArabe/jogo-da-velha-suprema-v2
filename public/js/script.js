@@ -180,4 +180,4 @@ socket.on('reiniciou', () => {
 
 limparButton.addEventListener("click", limparJogo);
 restartButton.addEventListener("click", limparJogo);
-joinGameButton.addEventListener("click", joinGame);
+//joinGameButton.addEventListener("click", joinGame);
