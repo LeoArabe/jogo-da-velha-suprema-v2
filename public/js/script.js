@@ -42,6 +42,7 @@ let boardUnlock;
 
 const name = localStorage.getItem('playerName');
 console.log(name)
+console.dir(localStorage)
 
 //const name = document.getElementById('playerName').value;
 if (name) {

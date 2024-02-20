@@ -1,11 +1,30 @@
 const express = require('express');
 const http = require('http');
 const { Server } = require("socket.io");
-const path = require('path'); // Adicione esta linha
+const path = require('path');
+const bodyParser = require('body-parser');
+const port = 3333;
+const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
+
+const corsOptions = {
+    origin: 'http://www.velhasuprema.kinghost.net/login/',
+};
+
+app.use(cors(corsOptions));
+
+app.use(bodyParser.json());
+
+app.post('/joinGame', (req, res) => {
+    const playerName = req.body.name;
+    console.log(playerName);
+    res.status(200).send('Nome recebido');
+})
+
+
 
 // Corrigindo a configuraÃ§Ã£o para servir arquivos estÃ¡ticos
 app.use(express.static(path.join(__dirname, 'public')));
