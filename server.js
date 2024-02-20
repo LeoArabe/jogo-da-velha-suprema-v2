@@ -44,6 +44,7 @@ app.get("/", (req, res) => {
 const rooms = {}; // Armazena as informaÃ§Ãµes das salas
 
 io.on('connection', (socket) => {
+    socket.on('joinGame', () => {
         let roomId;
         let playerSymbol;
 
@@ -66,6 +67,7 @@ io.on('connection', (socket) => {
 
         // Notificar todos na sala sobre o status atual
         updateRoomPlayers(roomId);
+    });
 
     socket.on('moveMade', ({ roomId, position, symbol }) => {
         // Processar jogada, verificar vitÃ³ria/empate, etc.
