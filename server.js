@@ -11,8 +11,16 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 const corsOptions = {
-    origin: 'http://www.velhasuprema.kinghost.net/login/',
+    origin: function (origin, callback) {
+        const allowedOrigins = ['http://www.velhasuprema.kinghost.net', 'http://www.velhasuprema.kinghost.net/login/'];
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
 };
+
 
 app.use(cors(corsOptions));
 
