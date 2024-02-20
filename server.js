@@ -12,18 +12,18 @@ const io = new Server(server);
 
 const corsOptions = {
     origin: function (origin, callback) {
-        console.log(origin); // Pode ser undefined
-        const allowedOrigins = ['http://www.velhasuprema.kinghost.net', 'http://www.velhasuprema.kinghost.net/login/'];
-        // Verifica se a origem está na lista de permitidos ou se é undefined
+        console.log(origin); // Útil para debug
+        const allowedOrigins = [
+            'http://www.velhasuprema.kinghost.net',
+            'http://www.velhasuprema.kinghost.net:21128' // Adicione esta linha
+        ];
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-            callback(null, true);
+            callback(null, true); // Permite a requisição se a origem estiver na lista
         } else {
-            callback(new Error(`This: ${origin} Not allowed by CORS`), false);
+            callback(new Error(`This: ${origin} Not allowed by CORS`), false); // Bloqueia a requisição
         }
     },
 };
-
-
 
 app.use(cors(corsOptions));
 
@@ -35,9 +35,6 @@ app.post('/joinGame', (req, res) => {
     res.status(200).send('Nome recebido');
 })
 
-
-
-// Corrigindo a configuraÃ§Ã£o para servir arquivos estÃ¡ticos
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
