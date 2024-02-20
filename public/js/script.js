@@ -41,9 +41,6 @@ let classToAdd;
 let boardUnlock;
 
 
-const nameg = localStorage.getItem('playerName');
-console.log(nameg)
-
     socket.emit('joinGame', );
 
 const setBoardUnlocked = (value) => {
