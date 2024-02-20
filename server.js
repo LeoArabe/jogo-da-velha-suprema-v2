@@ -8,7 +8,15 @@ const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+      origin: "http://www.velhasuprema.kinghost.net:21128'",
+      methods: ["GET", "POST"],
+      allowedHeaders: ["my-custom-header"],
+      credentials: true
+    }
+  });
+  
 
 const corsOptions = {
     origin: function (origin, callback) {
