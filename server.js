@@ -10,7 +10,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-      origin: "http://www.velhasuprema.kinghost.net:21128'",
+      origin: "http://www.velhasuprema.kinghost.net'",
       methods: ["GET", "POST"],
       allowedHeaders: ["my-custom-header"],
       credentials: true
