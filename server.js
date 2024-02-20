@@ -12,15 +12,17 @@ const io = new Server(server);
 
 const corsOptions = {
     origin: function (origin, callback) {
-        console.log(origin)
+        console.log(origin); // Pode ser undefined
         const allowedOrigins = ['http://www.velhasuprema.kinghost.net', 'http://www.velhasuprema.kinghost.net/login/'];
-        if (allowedOrigins.indexOf(origin) !== -1) {
+        // Verifica se a origem está na lista de permitidos ou se é undefined
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            callback(new Error(`This: ${origin} Not allowed by CORS`));
+            callback(new Error(`This: ${origin} Not allowed by CORS`), false);
         }
     },
 };
+
 
 
 app.use(cors(corsOptions));
