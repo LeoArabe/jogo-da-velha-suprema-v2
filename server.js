@@ -12,6 +12,7 @@ const io = new Server(server);
 
 const corsOptions = {
     origin: function (origin, callback) {
+        console.log(origin)
         const allowedOrigins = ['http://www.velhasuprema.kinghost.net', 'http://www.velhasuprema.kinghost.net/login/'];
         if (allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true);
