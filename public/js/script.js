@@ -41,13 +41,14 @@ let classToAdd;
 let boardUnlock;
 
 const name = localStorage.getItem('playerName');
+console.log(name)
 
 //const name = document.getElementById('playerName').value;
 if (name) {
     socket.emit('joinGame', { name });
-} else {
-    alert('Por favor, digite um nome para entrar no jogo.');
-}
+} //else {
+    //alert('Por favor, digite um nome para entrar no jogo.');
+//}
 
 const setBoardUnlocked = (value) => {
     boardUnlock = value;
