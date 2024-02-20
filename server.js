@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
     socket.on('joinGame', () => {
         let roomId;
         let playerSymbol;
-        const playerName = playersDetails.name || 'nãochegou';
+        const playerName = playersDetails.name || 'name fail';
         // Encontrar uma sala disponÃ­vel ou criar uma nova
         const availableRoom = Object.keys(rooms).find(roomId => rooms[roomId].players.length < 2);
 
