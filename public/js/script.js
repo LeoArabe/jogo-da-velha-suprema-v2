@@ -40,17 +40,6 @@ let numberMove = 0;
 let classToAdd;
 let boardUnlock;
 
-const name = localStorage.getItem('playerName');
-console.log(name)
-console.dir(localStorage)
-
-//const name = document.getElementById('playerName').value;
-if (name) {
-    socket.emit('joinGame', { name });
-} //else {
-    //alert('Por favor, digite um nome para entrar no jogo.');
-//}
-
 const setBoardUnlocked = (value) => {
     boardUnlock = value;
 }
@@ -85,6 +74,7 @@ socket.on('restart', function (text) {
 })
 
 socket.on('joinedRoom', ({ roomId, symbol, name }) => {
+    console.log(name)
     currentRoomId = roomId;
     currentPlayerSymbol = symbol;
     currentPlayerName = name;
