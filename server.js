@@ -23,7 +23,8 @@ const corsOptions = {
         console.log(origin); // Útil para debug
         const allowedOrigins = [
             'http://www.velhasuprema.kinghost.net',
-            'http://www.velhasuprema.kinghost.net:21128' // Adicione esta linha
+            'http://www.velhasuprema.kinghost.net:21128',
+            'http://www.velhasuprema.kinghost.net:21128/joinGame' 
         ];
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true); // Permite a requisição se a origem estiver na lista
