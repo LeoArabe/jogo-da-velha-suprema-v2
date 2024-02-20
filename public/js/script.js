@@ -2,11 +2,11 @@ import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
 
 import {
     setBoardHoverClass, setBoardUnlockedHover, removeBoardHoverClass,
-    elementInfoPlayer, elementInfoGame, boardElements, cellElements, 
+    elementInfoPlayer, elementInfoGame, boardElements, cellElements,
     joinGameButton, elementInfoGameEnable, elementInfoGameDisable
 } from "./board.js";
 import { changeTurn } from "./players.js";
-import { checkAll, circleTurn} from "./rules.js";
+import { checkAll, circleTurn } from "./rules.js";
 import { winningMessage, restartButton, limparButton } from "./page.js";
 
 //Váriaveis Globais
@@ -40,13 +40,13 @@ let numberMove = 0;
 let classToAdd;
 let boardUnlock;
 
-function joinGame() {
-    const name = document.getElementById('playerName').value;
-    if (name) {
-        socket.emit('joinGame', { name });
-    } else {
-        alert('Por favor, digite um nome para entrar no jogo.');
-    }
+const name = localStorage.getItem('playerName');
+
+//const name = document.getElementById('playerName').value;
+if (name) {
+    socket.emit('joinGame', { name });
+} else {
+    alert('Por favor, digite um nome para entrar no jogo.');
 }
 
 const setBoardUnlocked = (value) => {
