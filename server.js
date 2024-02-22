@@ -57,6 +57,7 @@ app.use(bodyParser.json());
 
 app.post('/joinGame', (req, res) => {
     const playerName = req.body.name;
+    playersDetails.name = playerName;
 
     let sql = 'INSERT IGNORE INTO Jogadores (player_name) VALUES (?)';
     let values = [playerName];
@@ -69,10 +70,9 @@ app.post('/joinGame', (req, res) => {
         } else {
             console.log('Nome do jogador salvo no banco de dados');
         }
+        
         res.send('Operação concluída');
     });
-
-    playersDetails.name = playerName;
     res.status(200).send('Nome recebido');
 })
 
