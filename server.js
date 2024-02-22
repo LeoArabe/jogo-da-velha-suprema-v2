@@ -19,6 +19,7 @@ const db = require('./database');
 const routes = require('./routes');
 const indexRoutes = require('./indexRoutes');
 const setupSocket = require('./socketConfig');
+const port = 21128;
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
