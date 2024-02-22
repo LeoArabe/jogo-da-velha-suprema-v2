@@ -63,18 +63,25 @@ app.post('/joinGame', (req, res) => {
     let values = [playerName];
 
     db.query(sql, values, (err, result) => {
-        if (err) throw err;
+        if (err) {
+            console.error(err);
+            // Envia uma resposta de erro ao cliente
+            return res.status(500).send('Erro ao processar a requisição');
+        }
+
         console.log(result);
         if (result.affectedRows === 0) {
             console.log('Nome do jogador já existe, inserção ignorada.');
+            // Pode escolher enviar uma resposta específica aqui, se necessário
         } else {
             console.log('Nome do jogador salvo no banco de dados');
         }
         
-        res.send('Operação concluída');
+        // Envia uma resposta de sucesso ao cliente
+        res.status(200).send('Operação concluída');
     });
-    res.status(200).send('Nome recebido');
-})
+});
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
