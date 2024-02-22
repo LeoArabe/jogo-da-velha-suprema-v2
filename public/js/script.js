@@ -40,41 +40,7 @@ let numberMove = 0;
 let classToAdd;
 let boardUnlock;
 
-
-    socket.emit('joinGame', );
-
-const setBoardUnlocked = (value) => {
-    boardUnlock = value;
-}
-
-function click() {
-    for (const cell of cellElements) {
-        cell.removeEventListener("click", handleClick);
-        cell.addEventListener("click", handleClick, { once: true });
-    }
-};
-
-function removeCellAll(cell1, index,) {
-    for (var index; index < cell1; index++) {
-        cellElements[index].classList.remove("x", "o");
-        cellElements[index].classList.add("cell");
-    }
-    for (let index = 0; index < 9; index++) {
-        boardElements[index].classList.remove("wx", "wo", "d");
-    }
-};
-
-const startGame = () => {
-    circleTurn;
-    click();
-    removeCellAll(81, 0);
-    winningMessage.classList.remove("show-winning-message");
-    elementInfoPlayer.innerText = "Insira o seu nome, e bom jogo!!"
-};
-
-socket.on('restart', function (text) {
-    console.log(text)
-})
+socket.emit('joinGame', );
 
 socket.on('joinedRoom', ({ roomId, symbol, name }) => {
     console.log(name)
@@ -145,6 +111,39 @@ socket.on('gameUpdate', (gameState) => {
     console.log(`esse é o novo boardUnlock ${boardUnlock}`)
     numberMove++
 });
+
+socket.on('restart', function (text) {
+    console.log(text)
+})
+
+const setBoardUnlocked = (value) => {
+    boardUnlock = value;
+}
+
+function click() {
+    for (const cell of cellElements) {
+        cell.removeEventListener("click", handleClick);
+        cell.addEventListener("click", handleClick, { once: true });
+    }
+};
+
+function removeCellAll(cell1, index,) {
+    for (var index; index < cell1; index++) {
+        cellElements[index].classList.remove("x", "o");
+        cellElements[index].classList.add("cell");
+    }
+    for (let index = 0; index < 9; index++) {
+        boardElements[index].classList.remove("wx", "wo", "d");
+    }
+};
+
+const startGame = () => {
+    circleTurn;
+    click();
+    removeCellAll(81, 0);
+    winningMessage.classList.remove("show-winning-message");
+    elementInfoPlayer.innerText = "Insira o seu nome, e bom jogo!!"
+};
 
 const handleClick = (e) => {
     if (!turn) return;

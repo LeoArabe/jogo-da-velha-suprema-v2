@@ -3,9 +3,10 @@ const http = require('http');
 const { Server } = require("socket.io");
 const path = require('path');
 const bodyParser = require('body-parser');
-const port = 3333;
 const cors = require('cors');
+const mysql = require('mysql');
 
+const port = 21128;
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -34,13 +35,43 @@ const corsOptions = {
     },
 };
 
+const db = mysql.createConnection({
+    host:'mysql.velhasuprema.kinghost.net',
+    user: 'velhasuprema',
+    password: 'Leandrotwd1',
+    database: 'velhasuprema',
+});
+
+// Conectando ao banco de dados
+db.connect((err) => {
+  if (err) {
+    throw err;
+  }
+  console.log('Conectado ao banco de dados MySQL');
+});
+
+
 app.use(cors(corsOptions));
 
 app.use(bodyParser.json());
 
 app.post('/joinGame', (req, res) => {
     const playerName = req.body.name;
-    console.log(playerName);
+
+    let sql = 'INSERT IGNORE INTO Jogadores (Player Name) VALUES (?)';
+    let values = [playerName];
+
+    db.query(sql, values, (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        if (result.affectedRows === 0) {
+            console.log('Nome do jogador já existe, inserção ignorada.');
+        } else {
+            console.log('Nome do jogador salvo no banco de dados');
+        }
+        res.send('Operação concluída');
+    });
+    
     playersDetails.name = playerName;
     res.status(200).send('Nome recebido');
 })
@@ -48,7 +79,8 @@ app.post('/joinGame', (req, res) => {
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html')); // Use res.sendFile para enviar o arquivo HTML
+    const playerName = req.cookies.playerName;
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const rooms = {}; // Armazena as informaÃ§Ãµes das salas
@@ -98,6 +130,6 @@ function updateRoomPlayers(roomId) {
     io.to(roomId).emit('updatePlayers', room.players);
 }
 
-server.listen(21128, function(){
+server.listen(port, function(){
     console.log('Listening on port 21128');
 });
