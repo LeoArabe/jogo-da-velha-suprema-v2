@@ -35,4 +35,30 @@ exports.setRooms = (newRooms) => { rooms = newRooms; };
 exports.getPlayersDetails = () => playersDetails;
 exports.setPlayersDetails = (newDetails) => { playersDetails = newDetails; };
 
-// Aqui você pode adicionar mais lógica relacionada ao jogo conforme necessário
+// Adiciona um jogador a uma sala específica
+exports.addPlayerToRoom = (roomId, player) => {
+    if (!rooms[roomId]) {
+        rooms[roomId] = { players: [], moves: [] };
+    }
+    rooms[roomId].players.push(player);
+};
+
+// Cria uma nova sala com um jogador
+exports.createRoomWithPlayer = (roomId, player) => {
+    rooms[roomId] = { players: [player], moves: [] };
+};
+
+// Adiciona um movimento a uma sala
+exports.addMoveToRoom = (roomId, move) => {
+    if (rooms[roomId]) {
+        rooms[roomId].moves.push(move);
+    }
+};
+
+// Obtém os movimentos de uma sala
+exports.getRoomMoves = (roomId) => {
+    if (rooms[roomId]) {
+        return rooms[roomId].moves;
+    }
+    return [];
+};
