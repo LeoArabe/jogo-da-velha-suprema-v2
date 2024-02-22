@@ -1,4 +1,4 @@
-const gameController = require('./app/controllers/gameController');
+const gameController = require('./gameController');
 
 module.exports = function (io) {
     io.on('connection', (socket) => {
