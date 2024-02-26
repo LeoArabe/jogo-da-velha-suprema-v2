@@ -1,6 +1,6 @@
 // gameController.js
-const playerModel = require('./models/playerModel');
-const roomModel = require('./models/roomModel');
+const playerModel = require('../models/playerModel');
+const roomModel = require('../models/roomModel');
 
 exports.joinGame = (req, res) => {
     const playerName = req.body.name;
