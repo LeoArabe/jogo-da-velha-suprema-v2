@@ -3,6 +3,8 @@ let rooms = {}; // Move isso para roomModel.js
 exports.getRooms = () => rooms;
 exports.setRooms = (newRooms) => { rooms = newRooms; };
 exports.addPlayerToRoom = (roomId, player) => {
-    // Lógica para adicionar um jogador a uma sala
+    if (!rooms[roomId]) {
+        rooms[roomId] = { players: [], moves: [] }; // Inicializa a sala se ela não existir
+    }
+    rooms[roomId].players.push(player); // Adiciona o jogador à lista de jogadores da sala
 };
-// Adicione mais funções conforme necessário para manipular 'rooms'
