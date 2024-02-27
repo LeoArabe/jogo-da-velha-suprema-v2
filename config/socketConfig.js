@@ -4,15 +4,28 @@ module.exports = function (io) {
     io.on('connection', (socket) => {
         socket.on('joinGame', () => {
             const { playerName } = gameController.joinGame; // Supondo que o nome do jogador venha assim
-            const { roomId, playerSymbol, rooms } = gameController.joinRoom(socket.id, playerName);
-            
-            socket.join(roomId);
-            // Emite eventos ou atualizações necessárias para o cliente
-            io.to(roomId).emit('joinedRoom', { roomId, symbol: playerSymbol, name: playerName, rooms });
-            
+            // Dentro do evento 'joinGame' no seu servidor de socket
+            socket.on('joinGame', () => {
+                // Supondo que o nome do jogador seja obtido de alguma forma aqui
+                const playerName = 'somePlayerName'; // Substitua isso pelo seu método de obter o nome do jogador
 
-            const updatedPlayers = gameController.updateRoomPlayers(roomId); // Supondo que essa função agora retorna a lista atualizada de jogadores
-            io.to(roomId).emit('updatePlayers', updatedPlayers);
+                gameController.joinRoom(socket.id, playerName)
+                    .then(({ roomId, playerSymbol, rooms }) => {
+                        socket.join(roomId);
+                        // Emite eventos ou atualizações necessárias para o cliente
+                        io.to(roomId).emit('joinedRoom', { roomId, symbol: playerSymbol, name: playerName, rooms });
+
+                        const updatedPlayers = gameController.updateRoomPlayers(roomId); // Supondo que essa função agora retorna a lista atualizada de jogadores
+                        io.to(roomId).emit('updatePlayers', updatedPlayers);
+                    })
+                    .catch(err => {
+                        // Trate qualquer erro que possa ter ocorrido durante a tentativa de entrar na sala
+                        console.error('Erro ao entrar na sala:', err);
+                        // Envie uma mensagem de erro ao cliente, se necessário
+                        socket.emit('errorJoiningRoom', { message: 'Erro ao entrar na sala.' });
+                    });
+            });
+
         });
 
         socket.on('moveMade', ({ roomId, position, symbol }) => {
