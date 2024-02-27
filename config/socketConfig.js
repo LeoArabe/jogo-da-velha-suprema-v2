@@ -3,7 +3,7 @@ const gameController = require('../app/controllers/gameController');
 module.exports = function (io) {
     io.on('connection', (socket) => {
         socket.on('joinGame', () => {
-            const { playerName } = gameController.joinGame(); // Supondo que o nome do jogador venha assim
+            const { playerName } = gameController.joinGame; // Supondo que o nome do jogador venha assim
             const { roomId, playerSymbol, rooms } = gameController.joinRoom(socket.id, playerName);
             
             socket.join(roomId);
@@ -27,7 +27,7 @@ module.exports = function (io) {
             // Isso pode ser feito mantendo um registro de qual jogador está em qual sala
             // gameController.handlePlayerDisconnect(socket.id);
             // Suponha que handlePlayerDisconnect atualize a sala automaticamente e devolva o id da sala afetada
-            const roomId = gameController.getRoomIdByPlayer(socket.id);
+            //const roomId = gameController.getRoomIdByPlayer(socket.id);
             if (roomId) {
                 io.to(roomId).emit('updatePlayers', gameController.updateRoomPlayers(roomId));
             }
