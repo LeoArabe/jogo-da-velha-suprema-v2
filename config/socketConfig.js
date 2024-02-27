@@ -41,12 +41,6 @@ module.exports = function (io) {
             // gameController.handlePlayerDisconnect(socket.id);
             // Suponha que handlePlayerDisconnect atualize a sala automaticamente e devolva o id da sala afetada
             //const roomId = gameController.getRoomIdByPlayer(socket.id);
-            gameController.joinRoom(socket.id, playerName)
-                .then(({ roomId, playerSymbol, rooms }) => {
-                    if (roomId) {
-                        io.to(roomId).emit('updatePlayers', gameController.updateRoomPlayers(roomId));
-                    }
-                })
 
             console.log('Um jogador saiu do jogo.');
         });
