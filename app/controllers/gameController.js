@@ -18,6 +18,7 @@ exports.joinGame = (req, res) => {
         }
         res.status(200).send('Operação concluída');
     });
+    return playerName;
 };
 
 exports.joinRoom = (socketId, playerName) => {
@@ -38,7 +39,7 @@ exports.joinRoom = (socketId, playerName) => {
         } else {
             roomId = Math.random().toString(36).substring(2, 7);
             playerSymbol = 'x'; // Defina o símbolo do jogador
-            roomModel.createRoomWithPlayer(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
+            //roomModel.createRoomWithPlayer(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
         }
 
         // Finalmente, adicione o jogador à sala
