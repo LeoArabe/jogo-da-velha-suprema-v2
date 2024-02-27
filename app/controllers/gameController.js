@@ -46,6 +46,7 @@ exports.joinRoom = (socketId, playerName) => {
         roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
 
         // Retorna informações da sala e do jogador para serem usadas no socketConfig
+        console.log(`teste esse e o room id: ${roomId}`)
         return { roomId, playerSymbol, rooms: roomModel.getRooms() };
     });
 };
