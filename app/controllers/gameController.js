@@ -4,10 +4,6 @@ const roomModel = require('../models/roomModel');
 
 let playerName; 
 
-exports.joinName = () => {
-    return playerName;
-} 
-
 exports.joinGame = (req, res) => {
     const reqPlayerName = req.body.name;
     // Chama o model para adicionar um jogador
@@ -27,13 +23,8 @@ exports.joinGame = (req, res) => {
     playerName = reqPlayerName;
 };
 
-exports.joinRoom = (socketId, playerName) => {
+exports.joinRoom = (socketId) => {
     return new Promise((resolve, reject) => {
-        playerModel.addPlayer(playerName, (err, result) => {
-            if (err) {
-                return reject(err); // Rejeita a Promise se houver um erro
-            }
-            // Sua lógica para lidar com a sala aqui
             let roomId;
             let playerSymbol;
             const rooms = roomModel.getRooms();
@@ -45,7 +36,6 @@ exports.joinRoom = (socketId, playerName) => {
             } else {
                 roomId = Math.random().toString(36).substring(2, 7);
                 playerSymbol = 'x'; // Defina o símbolo do jogador
-                roomModel.setRooms(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
             }
 
             // Finalmente, adicione o jogador à sala
@@ -53,9 +43,9 @@ exports.joinRoom = (socketId, playerName) => {
 
             // Retorna informações da sala e do jogador para serem usadas no socketConfig
             console.log(`teste esse e o room id: ${roomId}`)
-            resolve({ roomId, playerSymbol, rooms: roomModel.getRooms() }); // Resolve a Promise com os resultados
+            resolve({ roomId, playerSymbol, playerName, rooms: roomModel.getRooms() }); // Resolve a Promise com os resultados
         });
-    });
+    
 };
 
 // Exemplo de função para atualizar a lista de jogadores em uma sala
