@@ -42,9 +42,10 @@ let boardUnlock;
 
 socket.emit('joinGame', );
 
-socket.on('joinedRoom', ({ roomId, symbol, name }) => {
+socket.on('joinedRoom', ({ roomId, symbol, name, room }) => {
     console.log(name)
     console.log(roomId)
+    console.log(room)
     currentRoomId = roomId;
     currentPlayerSymbol = symbol;
     currentPlayerName = name;
