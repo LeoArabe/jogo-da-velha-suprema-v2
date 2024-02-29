@@ -44,6 +44,7 @@ socket.emit('joinGame', );
 
 socket.on('joinedRoom', ({ roomId, symbol, name }) => {
     console.log(name)
+    console.log(roomId)
     currentRoomId = roomId;
     currentPlayerSymbol = symbol;
     currentPlayerName = name;
