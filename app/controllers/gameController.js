@@ -2,10 +2,16 @@
 const playerModel = require('../models/playerModel');
 const roomModel = require('../models/roomModel');
 
+let playerName; 
+
+exports.joinName = () => {
+    return playerName;
+} 
+
 exports.joinGame = (req, res) => {
-    const playerName = req.body.name;
+    const reqPlayerName = req.body.name;
     // Chama o model para adicionar um jogador
-    playerModel.addPlayer(playerName, (err, result) => {
+    playerModel.addPlayer(reqPlayerName, (err, result) => {
         if (err) {
             console.error(err);
             return res.status(500).send('Erro ao processar a requisição');
@@ -18,7 +24,7 @@ exports.joinGame = (req, res) => {
         }
         res.status(200).send('Operação concluída');
     });
-    return playerName;
+    playerName = reqPlayerName;
 };
 
 exports.joinRoom = (socketId, playerName) => {

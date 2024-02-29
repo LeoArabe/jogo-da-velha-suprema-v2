@@ -3,7 +3,7 @@ const gameController = require('../app/controllers/gameController');
 module.exports = function (io) {
     io.on('connection', (socket) => {
         socket.on('joinGame', () => {
-            const { playerName } = gameController.joinGame; // Supondo que o nome do jogador venha assim
+            const { playerName } = gameController.joinName; // Supondo que o nome do jogador venha assim
 
                 gameController.joinRoom(socket.id, playerName)
                     .then(({ roomId, playerSymbol, rooms }) => {
