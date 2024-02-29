@@ -1,4 +1,5 @@
 const gameController = require('../app/controllers/gameController');
+const roomModel = require('../models/roomModel');
 
 module.exports = function (io) {
     io.on('connection', (socket) => {

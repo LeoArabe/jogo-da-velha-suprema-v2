@@ -53,7 +53,6 @@ socket.on('joinedRoom', ({ roomId, symbol, name, rooms }) => {
 });
 
 socket.on('updatePlayers', (players) => {
-    console.log(players[0])
     firstPlayer = players[0];
     secondPlayer = players[1];
     // Atualizar a interface com a lista de jogadores
@@ -73,7 +72,7 @@ socket.on('updatePlayers', (players) => {
 });
 
 socket.on('gameUpdate', (gameState) => {
-
+    console.log(gameState)
     //define coordenadas para marcar posição 
     let cella = gameState.moves[numberMove].position.cella;
     let cellb = gameState.moves[numberMove].position.cellb;
