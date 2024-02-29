@@ -7,7 +7,7 @@ module.exports = function (io) {
                     .then(({ roomId, playerSymbol, playerName, rooms }) => {
                         socket.join(roomId);
                         // Emite eventos ou atualizações necessárias para o cliente
-                        io.to(roomId).emit('joinedRoom', { roomId, symbol: playerSymbol, name: playerName, rooms });
+                        socket.emit('joinedRoom', { roomId, symbol: playerSymbol, name: playerName, rooms });
 
                         const updatedPlayers = gameController.updateRoomPlayers(roomId); // Supondo que essa função agora retorna a lista atualizada de jogadores
                         io.to(roomId).emit('updatePlayers', updatedPlayers);
@@ -22,9 +22,9 @@ module.exports = function (io) {
 
         socket.on('moveMade', ({ roomId, position, symbol }) => {
             // Atualiza os movimentos dentro de uma sala específica via `gameController`
-            gameController.addMoveToRoom(roomId, { position, symbol });
+            roomModel.addMoveToRoom(roomId, { position, symbol });
             const rooms = roomModel.getRooms();
-            const moves = gameController.getRoomMoves(roomId);
+            //const moves = roomModel.getRoomMoves(roomId);
             io.to(roomId).emit('gameUpdate', { moves: rooms[roomId].moves });
         });
 

@@ -40,26 +40,14 @@ let numberMove = 0;
 let classToAdd;
 let boardUnlock;
 
-socket.emit('joinGame', );
+socket.emit('joinGame',);
 
-socket.on('joinedRoom', ({ roomId, symbol, name, room }) => {
-    console.log(name)
-    console.log(roomId)
-    console.log(room)
+socket.on('joinedRoom', ({ roomId, symbol, name, rooms }) => {
     currentRoomId = roomId;
     currentPlayerSymbol = symbol;
     currentPlayerName = name;
-    if (symbol === "x") {
-        //console.log('voce é o X')
-        turn = true;
-        setBoardUnlocked(9);
-        setBoardHoverClass();
-        setBoardUnlockedHover(boardUnlock);
-    } else {
-        turn = false;
-        elementInfoPlayer.innerText = "Aguarde a sua Vez!"
-        //console.log('voce é o O')
-    }
+    console.log(rooms);
+    elementInfoPlayer.innerText = "Aguardando um adversário...";
 });
 
 socket.on('updatePlayers', (players) => {
@@ -67,15 +55,17 @@ socket.on('updatePlayers', (players) => {
     // Atualizar a interface com a lista de jogadores
     if (players.length === 2) {
         if (currentPlayerSymbol === 'x') {
-            elementInfoPlayer.innerText = `"Sua vez, ${currentPlayerName}!"`
+            turn = true;
+            setBoardUnlocked(9);
+            setBoardHoverClass();
+            setBoardUnlockedHover(boardUnlock);            
             elementInfoGameEnable();
-            elementInfoGame.innerText = `Você começa! jogue onde quiser!`
+            elementInfoPlayer.innerText = `"Sua vez, ${players[0]}!"`;
+            elementInfoGame.innerText = `Você começa! jogue onde quiser!`;
         } else {
-            elementInfoPlayer.innerText = `"Aguarde sua vez, ${currentPlayerName}!"`
+            elementInfoPlayer.innerText = `"Aguarde sua vez, ${players[0]}!"`;
         }
-    } else {
-        elementInfoPlayer.innerText = "Aguardando um adversário..."
-    }
+    } 
 });
 
 socket.on('gameUpdate', (gameState) => {

@@ -41,18 +41,12 @@ exports.joinRoom = (socketId) => {
                 roomModel.createRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
             }
 
-            // Finalmente, adicione o jogador à sala
-
-            // Retorna informações da sala e do jogador para serem usadas no socketConfig
-            console.log(`teste esse e o room id: ${roomId}`)
-            resolve({ roomId, playerSymbol, playerName, rooms: roomModel.getRooms() }); // Resolve a Promise com os resultados
+            resolve({ roomId, playerSymbol, playerName, rooms }); // Resolve a Promise com os resultados
         });
-    
 };
 
 // Exemplo de função para atualizar a lista de jogadores em uma sala
 exports.updateRoomPlayers = (roomId) => {
     const room = roomModel.getRooms()[roomId];
-    // Retorna a lista atualizada de jogadores
     return room ? room.players : [];
 };
