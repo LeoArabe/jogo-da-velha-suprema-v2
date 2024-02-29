@@ -3,7 +3,7 @@ const gameController = require('../app/controllers/gameController');
 module.exports = function (io) {
     io.on('connection', (socket) => {
         socket.on('joinGame', () => {
-                const playerName = 'somePlayerName'; // Substitua isso pelo seu método de obter o nome do jogador
+            const { playerName } = gameController.joinGame; // Supondo que o nome do jogador venha assim
 
                 gameController.joinRoom(socket.id, playerName)
                     .then(({ roomId, playerSymbol, rooms }) => {
@@ -21,6 +21,8 @@ module.exports = function (io) {
                         socket.emit('errorJoiningRoom', { message: 'Erro ao entrar na sala.' });
                     });
             });
+
+        });
 
         socket.on('moveMade', ({ roomId, position, symbol }) => {
             // Atualiza os movimentos dentro de uma sala específica via `gameController`
