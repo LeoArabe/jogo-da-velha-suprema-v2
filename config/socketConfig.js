@@ -20,8 +20,6 @@ module.exports = function (io) {
                         // Envie uma mensagem de erro ao cliente, se necessário
                         socket.emit('errorJoiningRoom', { message: 'Erro ao entrar na sala.' });
                     });
-            });
-
         });
 
         socket.on('moveMade', ({ roomId, position, symbol }) => {
