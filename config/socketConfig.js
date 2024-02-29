@@ -23,8 +23,9 @@ module.exports = function (io) {
         socket.on('moveMade', ({ roomId, position, symbol }) => {
             // Atualiza os movimentos dentro de uma sala específica via `gameController`
             gameController.addMoveToRoom(roomId, { position, symbol });
+            const rooms = roomModel.getRooms();
             const moves = gameController.getRoomMoves(roomId);
-            io.to(roomId).emit('gameUpdate', { moves });
+            io.to(roomId).emit('gameUpdate', { moves: rooms[roomId].moves });
         });
 
         socket.on('disconnect', () => {
