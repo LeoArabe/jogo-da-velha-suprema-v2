@@ -32,15 +32,16 @@ exports.joinRoom = (socketId) => {
 
             if (availableRoom) {
                 roomId = availableRoom;
-                playerSymbol = 'o'; // Por exemplo, defina o símbolo do jogador
+                playerSymbol = 'o'; // Por exemplo, defina o símbolo do jogador            
+                roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
+
             } else {
                 roomId = Math.random().toString(36).substring(2, 7);
                 playerSymbol = 'x'; // Defina o símbolo do jogador
-                roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
+                roomModel.createRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
             }
 
             // Finalmente, adicione o jogador à sala
-            roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
 
             // Retorna informações da sala e do jogador para serem usadas no socketConfig
             console.log(`teste esse e o room id: ${roomId}`)
