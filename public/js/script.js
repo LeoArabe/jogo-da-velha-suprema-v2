@@ -51,7 +51,9 @@ socket.on('joinedRoom', ({ roomId, symbol, name, rooms }) => {
 });
 
 socket.on('updatePlayers', (players) => {
-    console.log(players)
+    console.log(players[0])
+    firstPlayer = players[0];
+    secondPlayer = players[1];
     // Atualizar a interface com a lista de jogadores
     if (players.length === 2) {
         if (currentPlayerSymbol === 'x') {
@@ -60,10 +62,10 @@ socket.on('updatePlayers', (players) => {
             setBoardHoverClass();
             setBoardUnlockedHover(boardUnlock);            
             elementInfoGameEnable();
-            elementInfoPlayer.innerText = `"Sua vez, ${players[0]}!"`;
+            elementInfoPlayer.innerText = `"Sua vez, ${firstPlayer.name}!"`;
             elementInfoGame.innerText = `Você começa! jogue onde quiser!`;
         } else {
-            elementInfoPlayer.innerText = `"Aguarde sua vez, ${players[0]}!"`;
+            elementInfoPlayer.innerText = `"Aguarde sua vez, ${secondPlayer.name}!"`; 
         }
     } 
 });
