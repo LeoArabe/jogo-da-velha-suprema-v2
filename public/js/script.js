@@ -62,6 +62,7 @@ socket.on('joinedRoom', ({ roomId, symbol, name }) => {
 });
 
 socket.on('updatePlayers', (players) => {
+    console.log(players)
     // Atualizar a interface com a lista de jogadores
     if (players.length === 2) {
         if (currentPlayerSymbol === 'x') {
