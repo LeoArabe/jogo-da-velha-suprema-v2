@@ -34,6 +34,8 @@ const celle0 = [[0, 1, 2, 3, 4, 5, 6, 7, 8]
 
 let currentPlayerName;
 let currentRoomId;
+let firstPlayer;
+let secondPlayer;
 export let currentPlayerSymbol;
 export let turn;
 let numberMove = 0;
@@ -52,8 +54,8 @@ socket.on('joinedRoom', ({ roomId, symbol, name, rooms }) => {
 
 socket.on('updatePlayers', (players) => {
     console.log(players[0])
-    let firstPlayer = players[0];
-    let secondPlayer = players[1];
+    firstPlayer = players[0];
+    secondPlayer = players[1];
     // Atualizar a interface com a lista de jogadores
     if (players.length === 2) {
         if (currentPlayerSymbol === 'x') {
