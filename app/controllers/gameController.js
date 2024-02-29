@@ -36,6 +36,7 @@ exports.joinRoom = (socketId) => {
             } else {
                 roomId = Math.random().toString(36).substring(2, 7);
                 playerSymbol = 'x'; // Defina o símbolo do jogador
+                roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
             }
 
             // Finalmente, adicione o jogador à sala
