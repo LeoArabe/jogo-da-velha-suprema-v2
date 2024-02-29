@@ -72,7 +72,7 @@ socket.on('updatePlayers', (players) => {
 });
 
 socket.on('gameUpdate', (gameState) => {
-    console.log(gameState)
+    console.log(gameState);
     //define coordenadas para marcar posição 
     let cella = gameState.moves[numberMove].position.cella;
     let cellb = gameState.moves[numberMove].position.cellb;
