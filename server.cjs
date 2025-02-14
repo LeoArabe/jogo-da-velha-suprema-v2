@@ -19,7 +19,7 @@ const db = require('./db/database.cjs');
 const routes = require('./app/routes/routes.cjs');
 const indexRoutes = require('./app/routes/indexRoutes.cjs');
 const setupSocket = require('./config/socketConfig.cjs');
-const port = 21128;
+const port = 21041;
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -31,5 +31,5 @@ setupSocket(io);
 app.use('/', indexRoutes);
 
 server.listen(port, function () {
-    console.log('Listening on port 21128');
+    console.log(`Listen on Port ${port}`);
 });
