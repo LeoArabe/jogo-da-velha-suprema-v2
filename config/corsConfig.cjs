@@ -3,8 +3,8 @@ const corsOptions = {
         console.log(origin); // Útil para debug
         const allowedOrigins = [
             'http://www.velhasuprema.kinghost.net',
-            'http://www.velhasuprema.kinghost.net:21128',
-            'http://www.velhasuprema.kinghost.net:21128/joinGame',
+            'http://www.velhasuprema.kinghost.net:21041',
+            'http://www.velhasuprema.kinghost.net:21041/joinGame',
             'http://localhost:3000'
         ];
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
