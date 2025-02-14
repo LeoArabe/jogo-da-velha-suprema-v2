@@ -4,7 +4,8 @@ const corsOptions = {
         const allowedOrigins = [
             'http://www.velhasuprema.kinghost.net',
             'http://www.velhasuprema.kinghost.net:21128',
-            'http://www.velhasuprema.kinghost.net:21128/joinGame'
+            'http://www.velhasuprema.kinghost.net:21128/joinGame',
+            'http://localhost:3000'
         ];
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
             callback(null, true); // Permite a requisição se a origem estiver na lista

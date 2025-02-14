@@ -1,5 +1,5 @@
 // db/database.js é o módulo que configura e fornece a conexão com o banco de dados
-const db = require('../../db/database');
+const db = require('../../db/database.cjs');
 
 // playerModel.js
 exports.addPlayer = (playerName, callback) => {

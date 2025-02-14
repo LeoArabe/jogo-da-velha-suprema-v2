@@ -14,12 +14,12 @@ const io = new Server(server, {
         credentials: true
     }
 });
-const corsOptions = require('./config/corsConfig');
-const db = require('./db/database');
-const routes = require('./app/routes/routes');
-const indexRoutes = require('./app/routes/indexRoutes');
-const setupSocket = require('./config/socketConfig');
-const port = 21128;
+const corsOptions = require('./config/corsConfig.cjs');
+const db = require('./db/database.cjs');
+const routes = require('./app/routes/routes.cjs');
+const indexRoutes = require('./app/routes/indexRoutes.cjs');
+const setupSocket = require('./config/socketConfig.cjs');
+const port = 3000;
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());

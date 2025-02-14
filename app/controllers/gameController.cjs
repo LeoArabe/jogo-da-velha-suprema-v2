@@ -1,6 +1,6 @@
 // gameController.js
-const playerModel = require('../models/playerModel');
-const roomModel = require('../models/roomModel');
+const playerModel = require('../models/playerModel.cjs');
+const roomModel = require('../models/roomModel.cjs');
 
 let playerName; 
 
