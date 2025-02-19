@@ -6,6 +6,8 @@ let playerName;
 
 exports.joinGame = (req, res) => {
     const reqPlayerName = req.body.name;
+    console.log(`reqplayername: ${reqPlayerName}`)
+    console.log(`reqbody: ${req.body}`)
     // Chama o model para adicionar um jogador
     playerModel.addPlayer(reqPlayerName, (err, result) => {
         if (err) {
