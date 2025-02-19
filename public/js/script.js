@@ -49,6 +49,8 @@ socket.on('joinedRoom', ({ roomId, symbol, name, rooms }) => {
     currentPlayerSymbol = symbol;
     currentPlayerName = name;
     console.log(rooms);
+    console.log(`current room: ${roomId}`);
+    console.log(`name: ${name}`);
     elementInfoPlayer.innerText = "Aguardando um adversário...";
 });
 

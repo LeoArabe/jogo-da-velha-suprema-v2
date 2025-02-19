@@ -2,7 +2,7 @@
 const playerModel = require('../models/playerModel.cjs');
 const roomModel = require('../models/roomModel.cjs');
 
-let playerName; 
+let playerName;
 
 exports.joinGame = (req, res) => {
     const reqPlayerName = req.body.name;
@@ -20,31 +20,34 @@ exports.joinGame = (req, res) => {
         } else {
             console.log('Nome do jogador salvo no banco de dados');
         }
-        res.status(200).send('Operação concluída');
+        res.status(200).json({
+            sucess: true,
+            playerName: result.playerName,
+            message: result.affectedRows === 0 ? 'Nome já existente' : 'Nome salvo com sucesso',
+        })
     });
-    playerName = reqPlayerName;
 };
 
 exports.joinRoom = (socketId) => {
     return new Promise((resolve, reject) => {
-            let roomId;
-            let playerSymbol;
-            const rooms = roomModel.getRooms();
-            const availableRoom = Object.keys(rooms).find(roomId => rooms[roomId].players.length < 2);
+        let roomId;
+        let playerSymbol;
+        const rooms = roomModel.getRooms();
+        const availableRoom = Object.keys(rooms).find(roomId => rooms[roomId].players.length < 2);
 
-            if (availableRoom) {
-                roomId = availableRoom;
-                playerSymbol = 'o'; // Por exemplo, defina o símbolo do jogador            
-                roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
+        if (availableRoom) {
+            roomId = availableRoom;
+            playerSymbol = 'o'; // Por exemplo, defina o símbolo do jogador            
+            roomModel.addPlayerToRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
 
-            } else {
-                roomId = Math.random().toString(36).substring(2, 7);
-                playerSymbol = 'x'; // Defina o símbolo do jogador
-                roomModel.createRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
-            }
+        } else {
+            roomId = Math.random().toString(36).substring(2, 7);
+            playerSymbol = 'x'; // Defina o símbolo do jogador
+            roomModel.createRoom(roomId, { id: socketId, symbol: playerSymbol, name: playerName });
+        }
 
-            resolve({ roomId, playerSymbol, playerName, rooms }); // Resolve a Promise com os resultados
-        });
+        resolve({ roomId, playerSymbol, playerName, rooms }); // Resolve a Promise com os resultados
+    });
 };
 
 // Exemplo de função para atualizar a lista de jogadores em uma sala
